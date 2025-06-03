@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Documentações</title>
+</head>
+<body>
+    <h1>Lista de Documentações</h1>
+    <a href="/upload">+ Adicionar novo tópico</a>
+    <hr>
+    {% if documentos %}
+        <ul>
+        {% for item in documentos %}
+            <li>
+                <strong>📘 {{ item.titulo }}</strong><br>
+                {% if item.video %}🎥 <a href="{{ item.video }}" target="_blank">Ver vídeo</a><br>{% endif %}
+                {% if item.pdf %}📄 <a href="{{ item.pdf }}" target="_blank">Ver PDF</a><br>{% endif %}
+                {% if item.descricao %}
+                    📝 Descrição:<br>
+                    <pre style="white-space: pre-wrap;">{{ item.descricao }}</pre>
+                {% endif %}
+                <hr>
+            </li>
+            <a href="/edit/{{ item.id }}">✏️ Editar</a> |
+            <form action="/delete/{{ item.id }}" method="POST" style="display:inline;">
+                <button type="submit" onclick="return confirm('Tem certeza que deseja excluir?')">🗑️ Deletar</button>
+            </form>
+
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>Nenhuma documentação cadastrada ainda.</p>
+    {% endif %}
+</body>
+</html>
