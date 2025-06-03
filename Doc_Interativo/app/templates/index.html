@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Documentações</title>
+</head>
+<body>
+    <h1>Lista de Documentações</h1>
+    <a href="/upload">+ Adicionar novo tópico</a>
+    <ul>
+        {% for item in documentos %}
+        <li>
+            <h3>{{ item.titulo }}</h3>
+            <p><a href="{{ item.video }}" target="_blank">Ver vídeo</a></p>
+            <p><a href="{{ item.pdf }}" target="_blank">Ver PDF</a></p>
+            <p><a href="{{ item.descricao }}" target="_blank">Ver descrição</a></p>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

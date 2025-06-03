@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Nova Documentação</title>
+</head>
+<body>
+    <h2>Adicionar novo tópico</h2>
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+        <label>Título:</label><br>
+        <input type="text" name="titulo" required><br><br>
+
+        <label>Descrição:</label><br>
+        <textarea name="descricao" rows="20" cols="100" required></textarea><br><br>
+
+        <label>Upload de vídeo:</label><br>
+        <input type="file" name="video" accept="video/*"><br><br>
+
+        <label>Upload de PDF:</label><br>
+        <input type="file" name="pdf" accept="application/pdf"><br><br>
+
+        <input type="submit" value="Salvar">
+    </form>
+</body>
+</html>
