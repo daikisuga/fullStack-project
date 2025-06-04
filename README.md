@@ -36,33 +36,24 @@ Como configurar o servidor local:
     - selecione-o e execute
     ou
     - no terminal rode
-        python /backend/server.py
+        python run.py
 
 # 5 Desativando o ambiente virtual(venv)
     No terminal digite:
         deactivate
 
-# 6 Possíveis problemas
-    A primeira vez o código irá rodar novamente, mas quando fechar o terminal pode encerrar o ambiente virtual também
-    Para evitar isso siga os passos:
-    6.1 Pressione (Ctrl+Shift+P)
-    6.2 Selecione ( Python: Create Enviroment... )
-    6.3 Selecione ( Venv )
-    6.4 Selecione ( Use Existing )
-
 # COMO USAR O CÓDIGO
 
 # 1 - Instalção
     * Python 
-    * Extenção "Live Preview" by Microsoft no VSCode
 # 2 - Executar backend
     2.1 ativar o ambiente virtual
-    2.2 executar o server.py
-# 3 - Abrir o index
-    3.1 - Clique com botão direito no index.html
-    3.2 - Selecione "Show Preview"
-    3.3 (opcional) - Copie a URL da janela que o Show Preview mostra e cole no navegador para melhor visibilidade
-    3.4 - Pode fechar a janela do 'Show Preview' no VsCode
+    2.2 executar run.py
+
+# 3 - Abrir página
+    3.1 - No terminal irá mostrar uma mensagem (Running on http:192.xxx.xxx-xx:8000)
+    Copie o link e abra no navegador
+
 
 Estrutura salva no csv
 | id | titulo | arquivo-video | arquivo-pdf | desc | status |
