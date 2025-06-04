@@ -114,7 +114,7 @@ def logout():
 
 # Criar novo tópico
 @upload_bp.route('/upload', methods=['GET', 'POST'])
-@login_required
+#@login_required
 def upload():
     if request.method == 'POST':
         titulo = request.form['titulo']
@@ -151,7 +151,7 @@ def upload():
 
 # Editar tópico
 @upload_bp.route('/edit/<id>', methods=['GET', 'POST'])
-@login_required
+#@login_required
 def edit(id):
     documentos = carregar_dados()
     doc = next((item for item in documentos if item['id'] == id), None)
@@ -191,7 +191,7 @@ def edit(id):
 
 # Deletar tópico
 @upload_bp.route('/delete/<id>', methods=['POST'])
-@login_required
+#@login_required
 def delete(id):
     documentos = carregar_dados()
     for doc in documentos:
@@ -202,7 +202,7 @@ def delete(id):
     return redirect('/')
 
 @upload_bp.route('/restaurar/<id>', methods=['POST'])
-@login_required
+#@login_required
 def restaurar(id):
     documentos = carregar_dados()
     for doc in documentos:
@@ -213,7 +213,7 @@ def restaurar(id):
     return redirect('/excluidos')
 
 @upload_bp.route('/excluidos')
-@login_required
+#@login_required
 def excluidos():
     documentos = carregar_dados()
     inativos = [doc for doc in documentos if doc['status'] == 'inativo']
