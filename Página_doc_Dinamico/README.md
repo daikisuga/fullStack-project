@@ -64,3 +64,5 @@ Como configurar o servidor local:
     3.3 (opcional) - Copie a URL da janela que o Show Preview mostra e cole no navegador para melhor visibilidade
     3.4 - Pode fechar a janela do 'Show Preview' no VsCode
 
+Estrutura salva no csv
+| id | titulo | arquivo-video | arquivo-pdf | desc | status |

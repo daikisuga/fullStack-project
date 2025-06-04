@@ -20,29 +20,34 @@ os.makedirs(DESCRICOES_FOLDER, exist_ok=True)
 
 # Função auxiliar para carregar os dados
 def carregar_dados():
-    documentos = []
+    dados = []
     if os.path.exists(CSV_PATH):
         with open(CSV_PATH, newline='', encoding='utf-8') as csvfile:
             reader = csv.reader(csvfile)
             for row in reader:
                 if len(row) < 5:
                     continue
-                descricao_texto = ''
+
+                desc_texto = ''
+                
                 if os.path.exists(row[4]):
                     with open(row[4], 'r', encoding='utf-8') as f:
-                        descricao_texto = f.read()
+                        desc_texto = f.read()
 
-                documentos.append({
+                # Pega o status, se não tiver (linha antiga), assume 'ativo'
+                status = row[5] if len(row) >= 6 else 'ativo'
+                dados.append({
                     'id': row[0],
                     'titulo': row[1],
                     'video': '/' + row[2].replace('app/', '') if row[2] else '',
                     'pdf': '/' + row[3].replace('app/', '') if row[3] else '',
-                    'descricao': descricao_texto,
+                    'descricao': desc_texto,
                     'desc_path': row[4],
                     'video_path': row[2],
-                    'pdf_path': row[3]
+                    'pdf_path': row[3],
+                    'status' : status
                 })
-    return documentos
+    return dados
 
 # Função auxiliar para salvar os dados
 def salvar_dados(documentos):
@@ -54,7 +59,8 @@ def salvar_dados(documentos):
                 doc['titulo'],
                 doc['video_path'],
                 doc['pdf_path'],
-                doc['desc_path']
+                doc['desc_path'],
+                doc['status']
             ])
 
 def login_required(f):
@@ -69,6 +75,8 @@ def login_required(f):
 @upload_bp.route('/')
 def index():
     documentos = carregar_dados()
+    #faz busca dos tópicos ativos
+    ativos = [doc for doc in documentos if doc['status'] == 'ativo']
     return render_template('index.html', documentos=documentos)
 
 # Rota Fluxogramas
@@ -186,6 +194,27 @@ def edit(id):
 @login_required
 def delete(id):
     documentos = carregar_dados()
-    documentos = [doc for doc in documentos if doc['id'] != id]
-    salvar_dados(documentos)
+    for doc in documentos:
+        if doc['id'] == id:
+            doc['status'] = 'inativo'
+            break
+        salvar_dados(documentos)
     return redirect('/')
+
+@upload_bp.route('/restaurar/<id>', methods=['POST'])
+@login_required
+def restaurar(id):
+    documentos = carregar_dados()
+    for doc in documentos:
+        if doc['id'] == id:
+            doc['status'] = 'ativo'
+            break
+    salvar_dados(documentos)
+    return redirect('/excluidos')
+
+@upload_bp.route('/excluidos')
+@login_required
+def excluidos():
+    documentos = carregar_dados()
+    inativos = [doc for doc in documentos if doc['status'] == 'inativo']
+    return render_template('excluidos.html', documentos=inativos)
