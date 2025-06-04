@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Tópicos Excluídos{% endblock %}
+
+{% block content %}
+<h2>🗑️ Tópicos Excluídos</h2>
+
+{% if documentos %}
+    <div class="list-group">
+        {% for item in documentos %}
+            <div class="list-group-item mb-3">
+                <h4>{{ item.titulo }}</h4>
+
+                {% if item.video %}
+                    🎥 <a href="{{ item.video }}" target="_blank" class="btn btn-sm btn-outline-secondary">Ver Vídeo</a>
+                {% endif %}
+
+                {% if item.pdf %}
+                    📄 <a href="{{ item.pdf }}" target="_blank" class="btn btn-sm btn-outline-secondary">Ver PDF</a>
+                {% endif %}
+
+                {% if item.descricao %}
+                    <div class="mt-2">
+                        <strong>📝 Descrição:</strong>
+                        <p>{{ item.descricao }}</p>
+                    </div>
+                {% endif %}
+
+                <form action="/restaurar/{{ item.id }}" method="POST" class="mt-2 d-inline">
+                    <button class="btn btn-success btn-sm">♻️ Restaurar</button>
+                </form>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <div class="alert alert-info">
+        Nenhum tópico foi excluído.
+    </div>
+{% endif %}
+{% endblock %}
