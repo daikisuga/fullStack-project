@@ -89,6 +89,11 @@ def fluxograma():
 def chamados():
     return render_template('chamados.html')
 
+#Rota Sobre
+@upload_bp.route('/sobre')
+def sobre():
+    return render_template('sobre.html')
+
 #Login
 @upload_bp.route('/login', methods=['GET','POST'])
 def login():
