@@ -63,13 +63,7 @@ def salvar_dados(documentos):
                 doc['status']
             ])
 
-def login_required(f):
-    @wraps(f)
-    def decorated_function(*args, **kwargs):
-        if not session.get('logged_in'):
-            return redirect(url_for('upload_bp.login'))
-        return f(*args, **kwargs)
-    return decorated_function
+
 
 # Rota principal (listar)
 @upload_bp.route('/')
@@ -84,6 +78,7 @@ def index():
 def fluxograma():
     return render_template('fluxograma.html')
 
+<<<<<<< Updated upstream
 #Rota Chamados
 @upload_bp.route('/chamados')
 def chamados():
@@ -121,6 +116,8 @@ def login():
 def logout():
     session.pop('logged_in', None)
     return redirect('/login')
+=======
+>>>>>>> Stashed changes
 
 # Criar novo tópico
 @upload_bp.route('/upload', methods=['GET', 'POST'])
@@ -130,7 +127,6 @@ def upload():
         titulo = request.form['titulo']
         descricao = request.form['descricao']
         video = request.files.get('video')
-        pdf = request.files.get('pdf')
 
         id_unico = str(uuid.uuid4())[:8]
 
@@ -143,10 +139,6 @@ def upload():
             video.save(os.path.join(UPLOAD_FOLDER_VIDEO, video_filename))
             video_path = f'static/uploads/videos/{video_filename}'
 
-        if pdf and pdf.filename != '':
-            pdf_filename = f'{id_unico}_{secure_filename(pdf.filename)}'
-            pdf.save(os.path.join(UPLOAD_FOLDER_PDF, pdf_filename))
-            pdf_path = f'static/uploads/pdfs/{pdf_filename}'
 
         with open(desc_path, 'w', encoding='utf-8') as f:
             f.write(descricao)
