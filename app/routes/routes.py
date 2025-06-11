@@ -94,6 +94,11 @@ def chamados():
 def sobre():
     return render_template('sobre.html')
 
+#Rota Como usar
+@upload_bp.route('/comoUsar')
+def comoUsar():
+    return render_template('comoUsar.html')
+
 #Login
 @upload_bp.route('/login', methods=['GET','POST'])
 def login():
