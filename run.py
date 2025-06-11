@@ -8,5 +8,3 @@ app = create_app()
 
 if __name__ =='__main__':
     app.run(host='192.168.15.37', port=8000) #ip Pedro
-    #app.run(host='192.168.0.0', port=8000) #ip Gustavo
-    #app.run(host='192.168.0.0', port=8000) #ip Alan
