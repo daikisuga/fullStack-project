@@ -31,6 +31,12 @@
                         ♻️ Restaurar
                     </button>
                 </form>
+
+                <form action="{{ url_for('upload_bp.delete_permanente', id=item['id']) }}" method="POST" style="display:inline;">
+                    <button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('Excluir permanentemente este documento? Essa ação não poderá ser desfeita!')">
+                        ❌ Excluir Permanentemente
+                    </button>
+                </form>
             </div>
         </div>
     {% endfor %}
