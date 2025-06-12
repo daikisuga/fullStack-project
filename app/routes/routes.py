@@ -213,3 +213,23 @@ def excluidos():
     documentos = carregar_dados()
     inativos = [doc for doc in documentos if doc['status'] == 'inativo']
     return render_template('excluidos.html', documentos=inativos)
+
+@upload_bp.route('/delete_permanente/<id>', methods=['POST'])
+#@login_required
+def delete_permanente(id):
+    documentos = carregar_dados()
+    documentos_novos = []
+
+    for doc in documentos:
+        if doc['id'] == id:
+            if doc['video_path'] and os.path.exists(doc['video_path']):
+                os.remove(doc['video_path'])
+            if doc['pdf_path'] and os.path.exists(doc['pdf_path']):
+                os.remove(doc['pdf_path'])
+            if doc['desc_path'] and os.path.exists(doc['desc_path']):
+                os.remove(doc['desc_path'])
+        else:
+            documentos_novos.append(doc)
+
+    salvar_dados(documentos_novos)
+    return redirect('/excluidos')
