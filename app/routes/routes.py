@@ -71,7 +71,7 @@ def index():
     documentos = carregar_dados()
     #faz busca dos tópicos ativos
     ativos = [doc for doc in documentos if doc['status'] == 'ativo']
-    return render_template('index.html', documentos=documentos)
+    return render_template('index.html', documentos=ativos)
 
 # Rota Fluxogramas
 @upload_bp.route('/fluxograma')
@@ -192,8 +192,9 @@ def delete(id):
         if doc['id'] == id:
             doc['status'] = 'inativo'
             break
-        salvar_dados(documentos)
+    salvar_dados(documentos)
     return redirect('/')
+
 
 @upload_bp.route('/restaurar/<id>', methods=['POST'])
 #@login_required
