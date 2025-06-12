@@ -78,7 +78,6 @@ def index():
 def fluxograma():
     return render_template('fluxograma.html')
 
-<<<<<<< Updated upstream
 #Rota Chamados
 @upload_bp.route('/chamados')
 def chamados():
@@ -111,8 +110,6 @@ def login():
 def logout():
     session.pop('logged_in', None)
     return redirect('/login')
-=======
->>>>>>> Stashed changes
 
 # Criar novo tópico
 @upload_bp.route('/upload', methods=['GET', 'POST'])
