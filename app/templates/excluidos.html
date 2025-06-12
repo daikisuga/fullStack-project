@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Lixeira - Documentos Excluídos{% endblock %}
+
+{% block content %}
+<h2>🗑️ Lixeira - Documentos Excluídos</h2>
+
+{% if documentos %}
+    <div class="list-group">
+    {% for item in documentos %}
+        <div class="list-group-item mb-3">
+            <h4>📘 {{ item.titulo }}</h4>
+            <div>
+                {% if item.video %}
+                    🎥 <a href="{{ item.video }}" target="_blank" class="btn btn-sm btn-outline-secondary">Ver Vídeo</a>
+                {% endif %}
+                {% if item.pdf %}
+                    📄 <a href="{{ item.pdf }}" target="_blank" class="btn btn-sm btn-outline-secondary">Ver PDF</a>
+                {% endif %}
+            </div>
+            {% if item.descricao %}
+                <div class="mt-3">
+                    <h6>📝 Descrição:</h6>
+                    <p>{{ item.descricao }}</p>
+                </div>
+            {% endif %}
+
+            <div class="mt-3">
+                <form action="{{ url_for('upload_bp.restaurar', id=item['id']) }}" method="POST" style="display:inline;">
+                    <button class="btn btn-sm btn-success" type="submit" onclick="return confirm('Restaurar este documento?')">
+                        ♻️ Restaurar
+                    </button>
+                </form>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+{% else %}
+    <div class="alert alert-info">Nenhum documento excluído.</div>
+{% endif %}
+{% endblock %}
