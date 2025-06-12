@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Editar Documentação{% endblock %}
+
+{% block content %}
+<h2>✏️ Editar Documentação</h2>
+
+<form method="POST">
+    <div class="mb-3">
+        <label class="form-label">Título</label>
+        <input type="text" class="form-control" name="titulo" value="{{ documento.titulo }}" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Descrição</label>
+        <textarea class="form-control" name="descricao" rows="3">{{ documento.descricao }}</textarea>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Link do Vídeo</label>
+        <input type="url" class="form-control" name="video" value="{{ documento.video }}">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Link do PDF</label>
+        <input type="url" class="form-control" name="pdf" value="{{ documento.pdf }}">
+    </div>
+    <button type="submit" class="btn btn-primary">💾 Salvar</button>
+    <a href="/" class="btn btn-secondary">← Voltar</a>
+</form>
+{% endblock %}
