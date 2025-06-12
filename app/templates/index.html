@@ -24,15 +24,14 @@
                     {% endif %}
 
                     <div class="mt-3">
-                        <a class="btn btn-sm btn-warning" href="/edit/{{ item.id }}">✏️ Editar</a>
-
-                        <form action="/delete/{{ item.id }}" method="POST" style="display:inline;">
+                        <a class="btn btn-sm btn-warning" href="{{ url_for('upload_bp.edit', id=item['id']) }}">✏️ Editar</a>
+                    
+                        <form action="{{ url_for('upload_bp.delete', id=item['id']) }}" method="POST" style="display:inline;">
                             <button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('Tem certeza que deseja excluir?')">
                                 🗑️ Deletar
                             </button>
                         </form>
                     </div>
-                </div>
             {% endfor %}
         </div>
     {% else %}
