@@ -88,6 +88,11 @@ def chamados():
 def sobre():
     return render_template('sobre.html')
 
+#Rota webcam:
+@upload_bp.route('/webcam')
+def webcam():
+    return render_template('webcam.html')
+
 #Login
 @upload_bp.route('/login', methods=['GET','POST'])
 def login():

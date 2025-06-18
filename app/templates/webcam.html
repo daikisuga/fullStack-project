@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}🎥 Webcam{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="row">
+        <h2 class="mb-4 text-center">Visualização da Webcam</h2>
+        <div class="col-md-12 text-center">
+            <video id="webcam" autoplay playsinline width="480" height="360" style="border: 2px solid #ccc; border-radius: 8px;"></video>
+            <p class="mt-3">Ajuste seu posicionamento e iluminação antes de iniciar.<br>Certifique-se de que o ambiente está bem iluminado e que você esteja no meio da câmera.</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    const video = document.getElementById('webcam');
+
+    async function startWebcam() {
+        // Verifica se o navegador suporta a API getUserMedia
+        if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+            alert("Seu navegador não suporta acesso à webcam via getUserMedia.");
+            return;
+        }
+
+        try {
+            // Solicita o stream da webcam
+            const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+            video.srcObject = stream;
+        } catch (err) {
+            alert("Erro ao acessar a webcam: " + err.message);
+        }
+    }
+
+    // Inicia a webcam assim que o DOM estiver pronto
+    document.addEventListener('DOMContentLoaded', startWebcam);
+</script>
+{% endblock %}
