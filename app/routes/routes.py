@@ -74,14 +74,10 @@ def index():
     return render_template('index.html', documentos=ativos)
 
 # Rota Fluxogramas
-@upload_bp.route('/fluxograma')
+@upload_bp.route('/metodologia')
 def fluxograma():
-    return render_template('fluxograma.html')
+    return render_template('metodologia.html')
 
-#Rota Chamados
-@upload_bp.route('/chamados')
-def chamados():
-    return render_template('chamados.html')
 
 #Rota Sobre
 @upload_bp.route('/sobre')

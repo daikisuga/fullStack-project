@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Sobre{% endblock %}
+
+{% block content %}
+<h2>📈 Metodologia</h2>
+    <h1>Como esta ferramenta funciona?</h1>
+    <p>Iniciando a criação de dataset, o servidor salvará apenas os frames que entrarão para no dataset,
+        estes frames passarão por uma bateria de validação antes de serem classificados e aprovados para serem inseridos
+        no Dataset, por exemplo, se o algoritmo consegue reconhecer um rosto no frame. <br>
+        Após a validação, o modelo de DeepLearning FER (abreviação de Facial Expression Recognition) fará a  classificação de cada
+        imagem e será armazenada em pastas da classe condizente.
+        Quando concluído, usando a biblioteca 'os' o dataset será compactado e disponibilizado para download dos usuários.
+
+        </p>
+        <h1>Segue fluxograma para melhor entendimento:</h1>
+        <img src="{{ url_for('static', filename='media/fluxograma.png') }}" alt="">
+{% endblock %}
