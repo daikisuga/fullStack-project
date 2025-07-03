@@ -1,9 +1,11 @@
-from flask import Blueprint, request, redirect, render_template, session, url_for, current_app
-from werkzeug.utils import secure_filename
-from functools import wraps
-import os
+from flask import Blueprint, request, redirect, render_template, session, current_app
+from datetime import datetime
 import uuid
+import os
+from werkzeug.utils import secure_filename
 import csv
+
+from app.models import db, Dataset  
 
 upload_bp = Blueprint('upload_bp', __name__)
 
@@ -68,10 +70,8 @@ def salvar_dados(documentos):
 # Rota principal (listar)
 @upload_bp.route('/')
 def index():
-    documentos = carregar_dados()
-    #faz busca dos tópicos ativos
-    ativos = [doc for doc in documentos if doc['status'] == 'ativo']
-    return render_template('index.html', documentos=ativos)
+    datasets = Dataset.query.order_by(Dataset.data_criacao.desc()).all()
+    return render_template('index.html', documentos=datasets)
 
 # Rota Fluxogramas
 @upload_bp.route('/metodologia')
@@ -117,28 +117,36 @@ def logout():
 #@login_required
 def upload():
     if request.method == 'POST':
+        # Recebe os dados do formulário
         titulo = request.form['titulo']
         descricao = request.form['descricao']
+        criador = request.form['criador']
         video = request.files.get('video')
 
+        # Gera um ID único (8 caracteres)
         id_unico = str(uuid.uuid4())[:8]
 
-        video_path = ''
-        pdf_path = ''
-        desc_path = f'{DESCRICOES_FOLDER}/{id_unico}.txt'
-
+        # Define o caminho do arquivo de vídeo
+        caminho_arquivo = ''
         if video and video.filename != '':
             video_filename = f'{id_unico}_{secure_filename(video.filename)}'
-            video.save(os.path.join(UPLOAD_FOLDER_VIDEO, video_filename))
-            video_path = f'static/uploads/videos/{video_filename}'
+            video_path = os.path.join(UPLOAD_FOLDER_VIDEO, video_filename)
+            video.save(video_path)
+            caminho_arquivo = f'static/uploads/videos/{video_filename}'
 
+        # Cria o objeto Dataset
+        novo_dataset = Dataset(
+            id=id_unico,
+            nome=titulo,
+            criador=criador,
+            data_criacao=datetime.now(),
+            descricao=descricao,
+            caminho_arquivos=caminho_arquivo
+        )
 
-        with open(desc_path, 'w', encoding='utf-8') as f:
-            f.write(descricao)
-
-        with open(CSV_PATH, 'a', newline='', encoding='utf-8') as csvfile:
-            writer = csv.writer(csvfile)
-            writer.writerow([id_unico, titulo, video_path, pdf_path, desc_path])
+        # Salva no banco de dados
+        db.session.add(novo_dataset)
+        db.session.commit()
 
         return redirect('/')
 
