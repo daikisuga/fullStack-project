@@ -9,13 +9,11 @@ def login():
         username = request.form['username']
         password = request.form['password']
         config = current_app.config
-
         if username == config['USERNAME'] and password == config['PASSWORD']:
             session['logged_in'] = True
             return redirect('/')
         else:
             error = 'Usuário ou senha inválidos'
-
     return render_template('login.html', error=error)
 
 @auth_bp.route('/logout')
