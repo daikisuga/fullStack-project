@@ -1,4 +1,4 @@
-Como configurar o servidor local:
+# COMO CONFIGURAR O SERVIDOR LOCAL
 
 # 1 Tenha o python instalado na máquina
     ## 1.1 Baixe o instalador: 
@@ -41,6 +41,11 @@ Como configurar o servidor local:
 # 5 Desativando o ambiente virtual(venv)
     No terminal digite:
         deactivate
+
+# INSTALANDO BIBLIOTECAS
+
+# 1 - OpenCV
+    - pip install opencv-python
 
 # COMO USAR O CÓDIGO
 
