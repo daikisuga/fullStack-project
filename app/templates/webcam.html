@@ -8,6 +8,7 @@
         <h2 class="mb-4 text-center">Visualização da Webcam</h2>
         <div class="col-md-12 text-center">
             <video id="webcam" autoplay playsinline width="480" height="360" style="border: 2px solid #ccc; border-radius: 8px;"></video>
+            <canvas id="canvas" width="480" height="360" style="display: none;"></canvas>
             <p class="mt-3">Ajuste seu posicionamento e iluminação antes de iniciar.<br>Certifique-se de que o ambiente está bem iluminado e que você esteja no meio da câmera.</p>
         </div>
     </div>
@@ -15,6 +16,7 @@
 
 <script>
     const video = document.getElementById('webcam');
+    const canvas = document.getElementById('canvas');
 
     async function startWebcam() {
         // Verifica se o navegador suporta a API getUserMedia
@@ -31,6 +33,22 @@
             alert("Erro ao acessar a webcam: " + err.message);
         }
     }
+
+    async function captureFrame() {
+        const context = canvas.getContext('2d');
+        context.drawImage(video, 0, 0, canvas.width, canvas.height);
+        const imgData = canvas.toDataURL('image/jpeg');
+
+        await fetch('/upload_frame', {
+            method: 'POST',
+            headers: {
+                'Content-type' : 'application/json',
+            },
+            body: JSON.stringify({image: imgData})
+        })
+    }
+    // Envia o frame a cada 10 segundos
+    setInterval(captureFrame, 1000);
 
     // Inicia a webcam assim que o DOM estiver pronto
     document.addEventListener('DOMContentLoaded', startWebcam);
