@@ -85,7 +85,8 @@ def upload():
         )
         db.session.add(novo_dataset)
         db.session.commit()
-        return redirect('/')
+        # Redireciona para a página de webcam após o envio
+        return redirect('/webcam')
     return render_template('form.html')
 
 # Editar tópico
