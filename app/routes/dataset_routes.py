@@ -1,4 +1,4 @@
-from flask import Blueprint, request, redirect, render_template, session, current_app
+from flask import Blueprint, request, redirect, render_template, current_app
 from datetime import datetime
 import uuid
 import os
