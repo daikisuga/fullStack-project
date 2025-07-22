@@ -13,3 +13,4 @@ class Dataset(db.Model):
     data_criacao = db.Column(db.DateTime, default=datetime.utcnow)
     descricao = db.Column(db.Text)
     caminho_arquivos = db.Column(db.Text, nullable=False)
+    status = db.Column(db.Boolean, default=True)
