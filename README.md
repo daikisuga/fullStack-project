@@ -16,8 +16,7 @@
     - Este passo é opcional mas altamente recomendado
     - Mantém o ambiente limpo de outras bibliotecas que poderiam causar conflito na execução do código
     3.1 Abra o terminal do VsCode (Ctrl + J)
-        rode o comando: python -m venv (nome_do_seu_ambiente)
-            * o nome do ambiente não deve conter 
+        rode o comando: python -m venv nome_do_seu_ambiente
         
         Este comando irá gerar uma pasta com o nome do seu ambiente
 
@@ -32,18 +31,12 @@
             pip install -r requirements.txt
     
 # 4 Execute o código python
-    - o código está na pasta backend
-    - selecione-o e execute
-    ou
     - no terminal rode
         python run.py
 
 # 5 Desativando o ambiente virtual(venv)
     No terminal digite:
         deactivate
-
-# INSTALANDO BIBLIOTECAS
-    - pip install -r requirements.txt
     
 # COMO USAR O CÓDIGO
 
