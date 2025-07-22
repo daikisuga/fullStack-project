@@ -42,20 +42,20 @@
     2.1 - Acesse o link https://www.apachefriends.org/pt_br/download.html e baixe a versão mais recente;
     2.2 - Ao abrir o xampp, clique em start no Apache e MySQL;
 
-    Caso não possua o banco de dados do projeto criado:
-        1 - Clique em admin do MySQL;
-        2 - Na tela do phpMyAdmin clique em novo;
-        3 - Insira o nome dataset_tcc_db e escolha a opção utf8mb4_general_tc;
-        4 - Ao terminar de criar o banco e selecioná-lo, será possível clicar na opção importar;
-        5 - Basta importar o arquivo "dataset_tcc_db" disponível 
+    * Caso não possua o banco de dados do projeto criado:
+     1 - Clique em admin do MySQL;
+     2 - Na tela do phpMyAdmin clique em novo;
+     3 - Insira o nome dataset_tcc_db e escolha a opção utf8mb4_general_tc;
+     4 - Ao terminar de criar o banco e selecioná-lo, será possível clicar na opção importar;
+     5 - Basta importar o arquivo "dataset_tcc_db.db" disponível na tela inicial do github com os demais arquivos. Clique no botão importar no final da página.
     
     
-### 2 - Executar backend
-    2.1 ativar o ambiente virtual
-    2.2 executar run.py
+### 3 - Executar backend
+    3.1 ativar o ambiente virtual
+    3.2 executar run.py
 
-### 3 - Abrir página
-    3.1 - No terminal irá mostrar uma mensagem (Running on http:192.xxx.xxx-xx:8000)
+### 4 - Abrir página
+    4.1 - No terminal irá mostrar uma mensagem (Running on http:192.xxx.xxx-xx:8000)
     Copie o link e abra no navegador
 
 # COMO USAR AS BIBLIOTECAS
