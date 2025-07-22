@@ -43,10 +43,8 @@
         deactivate
 
 # INSTALANDO BIBLIOTECAS
-
-# 1 - OpenCV
-    - pip install opencv-python
-
+    - pip install -r requirements.txt
+    
 # COMO USAR O CÓDIGO
 
 # 1 - Instalção
