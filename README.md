@@ -42,7 +42,7 @@
     2.1 - Acesse o link https://www.apachefriends.org/pt_br/download.html e baixe a versão mais recente;
     2.2 - Ao abrir o xampp, clique em start no Apache e MySQL;
 
-    * Caso não possua o banco de dados do projeto criado:
+    Caso não possua o banco de dados do projeto criado: 
      1 - Clique em admin do MySQL;
      2 - Na tela do phpMyAdmin clique em novo;
      3 - Insira o nome dataset_tcc_db e escolha a opção utf8mb4_general_tc;
