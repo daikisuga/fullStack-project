@@ -1,3 +1,8 @@
+'''
+POSSIVELMENTE NÃO SERÁ NECESSÁRIO USAR ESTE ARQUIVO.
+**ARQUIVO QUE TRATA AS AUTENCIAÇÕES DO USUÁRIO**
+Este arquivo define as rotas de autenticação do usuário, incluindo login e logout.
+
 from flask import Blueprint, request, redirect, render_template, session, current_app
 
 auth_bp = Blueprint('auth_bp', __name__)
@@ -21,3 +26,4 @@ def login():
 def logout():
     session.pop('logged_in', None)
     return redirect('/login')
+'''
