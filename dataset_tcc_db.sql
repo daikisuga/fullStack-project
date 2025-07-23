@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 21/07/2025 às 15:49
+-- Tempo de geração: 23/07/2025 às 18:27
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -33,7 +33,8 @@ CREATE TABLE `datasets` (
   `criador` varchar(100) NOT NULL,
   `data_criacao` datetime NOT NULL,
   `descricao` text DEFAULT NULL,
-  `caminho_arquivos` text NOT NULL
+  `caminho_arquivos` text NOT NULL,
+  `status` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
