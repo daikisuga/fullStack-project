@@ -25,6 +25,8 @@
                 </div>
             {% endif %}
 
+            <p><b>{{ item.criador}}</b> <br>{{item.data_criacao}}</p>
+
             <div class="mt-3">
                 <form action="{{ url_for('dataset_bp.restaurar', id=item['id']) }}" method="POST" style="display:inline;">
                     <button class="btn btn-sm btn-success" type="submit" onclick="return confirm('Restaurar este documento?')">

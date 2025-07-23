@@ -23,11 +23,13 @@
                                 <p>{{ item.descricao }}</p>
                             </div>
                         {% endif %}
+                        
+                        <p><b>{{ item.criador}}</b> <br>{{item.data_criacao}}</p>
 
                         <div class="mt-3">
-                            <a class="btn btn-sm btn-warning" href="{{ url_for('dataset_bp.edit', id=item['id']) }}">✏️ Editar</a>
+                            <a class="btn btn-sm btn-warning" href="{{ url_for('dataset_bp.edit', id=item.id) }}">✏️ Editar</a>
                         
-                            <form action="{{ url_for('dataset_bp.delete', id=item['id']) }}" method="POST" style="display:inline;">
+                            <form action="{{ url_for('dataset_bp.delete', id=item.id) }}" method="POST" style="display:inline;">
                                 <button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('Tem certeza que deseja excluir?')">
                                     ❌ Deletar
                                 </button>

@@ -1,3 +1,7 @@
+
+'''Alan Daiki Suga 23/07/2025
+#Teste para averiguar a necessidade deste arquivo, já que foi refatorado em diversos arquivos.
+
 from flask import Blueprint, request, redirect, render_template, session, current_app
 from datetime import datetime
 import uuid
@@ -165,3 +169,5 @@ def delete_permanente(id):
         db.session.delete(doc)
         db.session.commit()
     return redirect('/excluidos')
+
+'''
